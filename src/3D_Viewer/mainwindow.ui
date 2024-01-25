@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1037</width>
-    <height>677</height>
+    <width>1077</width>
+    <height>703</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,28 +19,43 @@
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">#centralwidget {
-background-color: #F0BB00;
+background-color: #7395ae;
 }</string>
    </property>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>70</y>
-      <width>821</width>
-      <height>421</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout"/>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>141</width>
-      <height>31</height>
+      <width>161</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+
+QPushButton {
+   border-radius: 16.772px;
+background: #5d5c61;
+color: #ffffff;
+
+font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1px solid
+}
+
+
+QPushButton:hover {
+    background-color: #4b4a4d; /* Цвет фона при наведении */
+  
+}
+
+QPushButton:pressed {
+    background-color: #3c3b3d; /* Цвет фона при нажатии */
+   
+}</string>
     </property>
     <property name="text">
      <string>Загрузить объект</string>
@@ -49,21 +64,42 @@ background-color: #F0BB00;
    <widget class="QDial" name="dial">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>220</y>
-      <width>100</width>
-      <height>100</height>
+      <x>910</x>
+      <y>310</y>
+      <width>101</width>
+      <height>101</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 16.772px;
+background: #5d5c61;
+color: #ffffff;
+
+font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1px solid</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>200</x>
       <y>20</y>
-      <width>141</width>
-      <height>31</height>
+      <width>311</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1.5px solid #379683;
+border-radius: 20px;
+padding-left: 10px;
+</string>
     </property>
     <property name="text">
      <string>Имя объекта: </string>
@@ -72,11 +108,20 @@ background-color: #F0BB00;
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>530</x>
       <y>20</y>
-      <width>161</width>
-      <height>31</height>
+      <width>261</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1.5px solid #379683;
+border-radius: 20px;
+padding-left: 10px;</string>
     </property>
     <property name="text">
      <string>Количество вершин: </string>
@@ -85,11 +130,20 @@ background-color: #F0BB00;
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>810</x>
       <y>20</y>
-      <width>161</width>
-      <height>31</height>
+      <width>251</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1.5px solid #379683;
+border-radius: 20px;
+padding-left: 10px;</string>
     </property>
     <property name="text">
      <string>Количество ребер: </string>
@@ -99,80 +153,71 @@ background-color: #F0BB00;
     <property name="geometry">
      <rect>
       <x>890</x>
-      <y>190</y>
-      <width>81</width>
-      <height>31</height>
+      <y>270</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1.5px solid #379683;
+border-radius: 20px;</string>
     </property>
     <property name="text">
      <string>Масштаб</string>
     </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>150</y>
-      <width>131</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Параллельная</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Центральная</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>120</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Вид проекции</string>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>520</y>
-      <width>93</width>
-      <height>29</height>
+      <y>510</y>
+      <width>111</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+
+QPushButton {
+   border-radius: 16.772px;
+background: #5d5c61;
+color: #ffffff;
+
+font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1px solid
+}
+
+
+QPushButton:hover {
+    background-color: #4b4a4d; /* Цвет фона при наведении */
+  
+}
+
+QPushButton:pressed {
+    background-color: #3c3b3d; /* Цвет фона при нажатии */
+   
+}</string>
     </property>
     <property name="text">
      <string>Сохранить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>520</y>
-      <width>93</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Записать</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>340</y>
-      <width>111</width>
+      <x>890</x>
+      <y>420</y>
+      <width>141</width>
       <height>61</height>
      </rect>
     </property>
@@ -180,7 +225,30 @@ background-color: #F0BB00;
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">
+
+QPushButton {
+   border-radius: 16.772px;
+background: #5d5c61;
+color: #ffffff;
+
+font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1px solid
+}
+
+
+QPushButton:hover {
+    background-color: #4b4a4d; /* Цвет фона при наведении */
+  
+}
+
+QPushButton:pressed {
+    background-color: #3c3b3d; /* Цвет фона при нажатии */
+   
+}</string>
     </property>
     <property name="text">
      <string>Выбрать цвет 
@@ -196,15 +264,19 @@ background-color: #F0BB00;
    <widget class="QWidget" name="vertices" native="true">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>520</y>
-      <width>401</width>
+      <x>270</x>
+      <y>541</y>
+      <width>411</width>
       <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QWidget#vertices {
-	background-color: yellow;
+	background-color: #b1a296;
+border-top-left-radius: 0px; /* Закругление левого верхнего угла */
+    border-bottom-left-radius: 10px; /* Закругление левого нижнего угла */
+    border-top-right-radius: 10px; /* Острый правый верхний угол */
+    border-bottom-right-radius: 10px;
 }</string>
     </property>
     <widget class="QLabel" name="label_8">
@@ -216,6 +288,12 @@ background-color: #F0BB00;
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 16px;
+font-style: normal;
+font-weight: 10;</string>
+     </property>
      <property name="text">
       <string>Тип</string>
      </property>
@@ -225,9 +303,42 @@ background-color: #F0BB00;
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>161</width>
+       <width>181</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    /* Основные стили QComboBox */
+    background: #5d5c61;
+color: #ffffff;
+font-family: &quot;PP Mori&quot;;
+font-size: 17px;
+font-style: normal;
+font-weight: 15;
+    border: 1px solid #000000;
+    padding: 1px 18px 1px 10px; /* Отступы для текста */
+    border-radius: 10px;
+    selection-background-color: #CCCCCC; /* Цвет фона при выборе элемента */
+}
+
+QComboBox::drop-down {
+    /* Стили для кнопки выпадающего списка */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #000000;
+    border-left-style: solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #EEEEEE, stop:1 #FFFFFF);
+}
+
+QComboBox::down-arrow {
+    /* Иконка стрелки вниз */
+    image: url(:/down_arrow.png);
+}</string>
      </property>
      <item>
       <property name="text">
@@ -248,11 +359,17 @@ background-color: #F0BB00;
     <widget class="QLabel" name="label_9">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>210</x>
        <y>10</y>
        <width>51</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 16px;
+font-style: normal;
+font-weight: 10;</string>
      </property>
      <property name="text">
       <string>Цвет</string>
@@ -267,6 +384,12 @@ background-color: #F0BB00;
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 16px;
+font-style: normal;
+font-weight: 10;</string>
+     </property>
      <property name="text">
       <string>Размер</string>
      </property>
@@ -276,9 +399,42 @@ background-color: #F0BB00;
       <rect>
        <x>260</x>
        <y>40</y>
-       <width>121</width>
+       <width>141</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    /* Основные стили QComboBox */
+    background: #5d5c61;
+color: #ffffff;
+font-family: &quot;PP Mori&quot;;
+font-size: 17px;
+font-style: normal;
+font-weight: 15;
+    border: 1px solid #000000;
+    padding: 1px 18px 1px 10px; /* Отступы для текста */
+    border-radius: 10px;
+    selection-background-color: #CCCCCC; /* Цвет фона при выборе элемента */
+}
+
+QComboBox::drop-down {
+    /* Стили для кнопки выпадающего списка */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #000000;
+    border-left-style: solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #EEEEEE, stop:1 #FFFFFF);
+}
+
+QComboBox::down-arrow {
+    /* Иконка стрелки вниз */
+    image: url(:/down_arrow.png);
+}</string>
      </property>
      <item>
       <property name="text">
@@ -304,7 +460,7 @@ background-color: #F0BB00;
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>210</x>
        <y>40</y>
        <width>31</width>
        <height>31</height>
@@ -325,41 +481,75 @@ background-color: #F0BB00;
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>500</y>
-      <width>81</width>
-      <height>20</height>
+      <x>270</x>
+      <y>510</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #b1a296;
+border-top-left-radius: 10px; /* Закругление левого верхнего угла */
+    border-bottom-left-radius: 0px; /* Закругление левого нижнего угла */
+    border-top-right-radius: 10px; /* Острый правый верхний угол */
+    border-bottom-right-radius: 0px;
+
+font-family: &quot;PP Mori&quot;;
+font-size: 17px;
+font-style: normal;
+font-weight: 10;</string>
     </property>
     <property name="text">
      <string>Вершины</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>490</y>
-      <width>81</width>
-      <height>20</height>
+      <x>700</x>
+      <y>510</y>
+      <width>91</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #b1a296;
+border-top-left-radius: 10px; /* Закругление левого верхнего угла */
+    border-bottom-left-radius: 0px; /* Закругление левого нижнего угла */
+    border-top-right-radius: 10px; /* Острый правый верхний угол */
+    border-bottom-right-radius: 0px;
+
+font-family: &quot;PP Mori&quot;;
+font-size: 17px;
+font-style: normal;
+font-weight: 10;</string>
     </property>
     <property name="text">
      <string>Ребра</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QWidget" name="edges" native="true">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>520</y>
-      <width>341</width>
+      <x>700</x>
+      <y>541</y>
+      <width>361</width>
       <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QWidget#edges {
-background-color: yellow;
+	background-color: #b1a296;
+border-top-left-radius: 0px; /* Закругление левого верхнего угла */
+    border-bottom-left-radius: 10px; /* Закругление левого нижнего угла */
+    border-top-right-radius: 10px; /* Острый правый верхний угол */
+    border-bottom-right-radius: 10px;
 }</string>
     </property>
     <widget class="QLabel" name="label_14">
@@ -371,6 +561,12 @@ background-color: yellow;
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 16px;
+font-style: normal;
+font-weight: 10;</string>
+     </property>
      <property name="text">
       <string>Тип</string>
      </property>
@@ -380,9 +576,42 @@ background-color: yellow;
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>121</width>
+       <width>131</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    /* Основные стили QComboBox */
+    background: #5d5c61;
+color: #ffffff;
+font-family: &quot;PP Mori&quot;;
+font-size: 17px;
+font-style: normal;
+font-weight: 15;
+    border: 1px solid #000000;
+    padding: 1px 18px 1px 10px; /* Отступы для текста */
+    border-radius: 10px;
+    selection-background-color: #CCCCCC; /* Цвет фона при выборе элемента */
+}
+
+QComboBox::drop-down {
+    /* Стили для кнопки выпадающего списка */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #000000;
+    border-left-style: solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #EEEEEE, stop:1 #FFFFFF);
+}
+
+QComboBox::down-arrow {
+    /* Иконка стрелки вниз */
+    image: url(:/down_arrow.png);
+}</string>
      </property>
      <item>
       <property name="text">
@@ -398,11 +627,17 @@ background-color: yellow;
     <widget class="QLabel" name="label_15">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>160</x>
        <y>10</y>
        <width>51</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 16px;
+font-style: normal;
+font-weight: 10;</string>
      </property>
      <property name="text">
       <string>Цвет</string>
@@ -417,6 +652,12 @@ background-color: yellow;
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 16px;
+font-style: normal;
+font-weight: 10;</string>
+     </property>
      <property name="text">
       <string>Размер</string>
      </property>
@@ -426,9 +667,42 @@ background-color: yellow;
       <rect>
        <x>210</x>
        <y>40</y>
-       <width>121</width>
+       <width>141</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    /* Основные стили QComboBox */
+    background: #5d5c61;
+color: #ffffff;
+font-family: &quot;PP Mori&quot;;
+font-size: 17px;
+font-style: normal;
+font-weight: 15;
+    border: 1px solid #000000;
+    padding: 1px 18px 1px 10px; /* Отступы для текста */
+    border-radius: 10px;
+    selection-background-color: #CCCCCC; /* Цвет фона при выборе элемента */
+}
+
+QComboBox::drop-down {
+    /* Стили для кнопки выпадающего списка */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #000000;
+    border-left-style: solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #EEEEEE, stop:1 #FFFFFF);
+}
+
+QComboBox::down-arrow {
+    /* Иконка стрелки вниз */
+    image: url(:/down_arrow.png);
+}</string>
      </property>
      <item>
       <property name="text">
@@ -454,7 +728,7 @@ background-color: yellow;
     <widget class="QPushButton" name="pushButton_7">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>160</x>
        <y>40</y>
        <width>31</width>
        <height>31</height>
@@ -472,13 +746,162 @@ background-color: yellow;
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>510</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+
+QPushButton {
+   border-radius: 16.772px;
+background: #5d5c61;
+color: #ffffff;
+
+font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1px solid
+}
+
+
+QPushButton:hover {
+    background-color: #4b4a4d; /* Цвет фона при наведении */
+  
+}
+
+QPushButton:pressed {
+    background-color: #3c3b3d; /* Цвет фона при нажатии */
+   
+}</string>
+    </property>
+    <property name="text">
+     <string>Записать</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="proectionTypeHandler" native="true">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>150</y>
+      <width>201</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#proectionTypeHandler {
+	border: 1.5px solid #379683;
+	border-radius: 20px;
+}
+</string>
+    </property>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>201</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 20;
+border: 1.5px solid #379683;
+border-radius: 20px;</string>
+     </property>
+     <property name="text">
+      <string>Вид проекции</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>50</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    /* Основные стили QComboBox */
+    background: #5d5c61;
+color: #ffffff;
+font-family: &quot;PP Mori&quot;;
+font-size: 18px;
+font-style: normal;
+font-weight: 15;
+    border: 1px solid #000000;
+    padding: 1px 18px 1px 10px; /* Отступы для текста */
+    border-radius: 10px;
+    selection-background-color: #CCCCCC; /* Цвет фона при выборе элемента */
+}
+
+QComboBox::drop-down {
+    /* Стили для кнопки выпадающего списка */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #000000;
+    border-left-style: solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #EEEEEE, stop:1 #FFFFFF);
+}
+
+QComboBox::down-arrow {
+    /* Иконка стрелки вниз */
+    image: url(:/down_arrow.png);
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Параллельная</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Центральная</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="screenHandler" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>821</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#screenHandler {
+	border: 3px solid #379683;
+	border-radius: 20px;
+}</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1037</width>
+     <width>1077</width>
      <height>26</height>
     </rect>
    </property>
