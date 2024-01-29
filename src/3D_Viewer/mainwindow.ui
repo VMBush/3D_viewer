@@ -342,12 +342,12 @@ QComboBox::down-arrow {
      </property>
      <item>
       <property name="text">
-       <string>Без отображения</string>
+       <string>Круг</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Круг</string>
+       <string>Без отображения</string>
       </property>
      </item>
      <item>
@@ -891,7 +891,8 @@ QComboBox::down-arrow {
     <property name="styleSheet">
      <string notr="true">QWidget#screenHandler {
 	border: 3px solid #379683;
-	border-radius: 20px;
+	border-radius: 0px;
+	padding: 13px;
 }</string>
     </property>
    </widget>

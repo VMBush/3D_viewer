@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QColorDialog>
+#include "glview.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,5 +22,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    glView* glScreen;
 };
 #endif // MAINWINDOW_H
