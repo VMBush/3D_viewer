@@ -3,6 +3,10 @@
 
 #include <QOpenGLWidget>
 #include <QWidget>
+#include <QTextStream>
+#include <QFile>
+#include <QCoreApplication>
+#include <QColorDialog>
 
 
 class glView : public QOpenGLWidget
@@ -11,10 +15,7 @@ public:
     glView();
     glView(QWidget* w);
 
-private:
-    void initializeGL() override;
-    void resizeGL(int w, int h) override;
-    void paintGL() override;
+    void draw();
 
     QString projectionType;
     QString backgroundColor;
@@ -24,6 +25,14 @@ private:
     QString edgeType;
     QString edgeColor;
     QString edgeThickness;
+
+    void setConf(QString param, QString value);
+
+private:
+    void initGlView();
+    void initializeGL() override;
+
+    QString getFromConf(QString param);
 
 };
 

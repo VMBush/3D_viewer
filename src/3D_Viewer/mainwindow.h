@@ -21,7 +21,17 @@ public:
     ~MainWindow();
 
 private:
+    void setupConfigs();
     Ui::MainWindow *ui;
     glView* glScreen;
+
+    void backgroundColorChange();
+    void projectionTypeChange(int index);
+    void vertexTypeChange(int index);
+    void vertexColorChange();
+    void vertexThicknessChange(int index);
+    void edgeTypeChange(int index);
+    void edgeColorChange();
+    void edgeThicknessChange(int index);
 };
 #endif // MAINWINDOW_H
