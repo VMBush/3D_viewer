@@ -11,7 +11,8 @@ CONFIG += c++17
 SOURCES += \
     glview.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    modules/sceneModelling.cpp
 
 HEADERS += \
     glview.h \

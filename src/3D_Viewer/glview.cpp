@@ -21,13 +21,6 @@ void glView::initGlView() {
 
 }
 
-
-void glView::initializeGL() {
-    glMatrixMode(GL_PROJECTION);
-
-}
-
-
 QString glView::getFromConf(QString param) {
     QString executablePath = QCoreApplication::applicationDirPath();
     QFile file(executablePath + "/../../3D_Viewer/options.conf");
@@ -75,8 +68,4 @@ void glView::setConf(QString param, QString value) {
     configs.remove();
     outConf.rename(executablePath + "/../../3D_Viewer/options.conf");
     outConf.close();
-}
-
-void glView::draw() {
-
 }
