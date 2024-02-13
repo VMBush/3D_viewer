@@ -9,14 +9,14 @@ void centralization (work_strust *All){
 
     // какой цикл? при парсинге данные в массиве или в связанной структуре?
     for (int i = 0; i < All->v->amount_v; i++){
-        All->v->coord->X -= centerX;
-        All->v->coord->Y -= centerY;
-        All->v->coord->Z -= centerZ;
+        All->v->coord[i].X -= centerX;
+        All->v->coord[i].Y -= centerY;
+        All->v->coord[i].Z -= centerZ;
     }
 }
 
 void normalization (work_strust *All){
-    
+
 }
 
 
