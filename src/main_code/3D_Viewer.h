@@ -3,36 +3,22 @@
 
 #include <stdlib.h>
 
-typedef struct 
-{
-    int amount_v;
-    points *coord;
-    double minMaxX[2];
-    double minMaxY[2];
-    double minMaxZ[2];
-} vertex;
-
-typedef struct 
-{
-    double X;
-    double Y;
-    double Z;
-} points;
-
-typedef struct 
-{   
-    int *p;
-    int amount_p;
-
-} polygons;
 
 typedef struct {
-    vertex *v;
-    polygons *p;
-    int amount_polygons;
-} work_strust;
+    int amount_coord;
+    int amount_index;
+    float *coord;
+    int *index;
+    float minMaxX[2];
+    float minMaxY[2];
+    float minMaxZ[2];
+} work_struct;
 
-void centralization (work_strust *All);
-void normalization (work_strust *All);
+
+//перемещение объекта относительно центра
+void centralization (work_struct *All);
+// первоначальное уменьшение объкта до размера виджета
+void normalization (work_struct *All);
+float ** mult_matrix(float **move_matrix, float **coord);
 
 #endif
