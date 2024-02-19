@@ -29,4 +29,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    options.conf
+    options.conf \
+    shaders/dot.frag \
+    shaders/dot.vert \
+    shaders/dotgeo.frag \
+    shaders/edge.frag \
+    shaders/edge.geo \
+    shaders/edge.vert
