@@ -21,7 +21,10 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-LIBS += -lglu32 -lopengl32
+win32 {
+    # Если это Windows, добавляем необходимые библиотеки
+    LIBS += -lglu32 -lopengl32
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
