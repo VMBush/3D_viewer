@@ -2,6 +2,7 @@
 #define MAIN_CODE_H
 
 #include <stdlib.h>
+#include <math.h>
 
 
 typedef struct {
@@ -16,9 +17,15 @@ typedef struct {
 
 
 //перемещение объекта относительно центра
-void centralization (work_struct *All);
-// первоначальное уменьшение объкта до размера виджета
-void normalization (work_struct *All);
-float ** mult_matrix(float **move_matrix, float **coord);
+float** centralization (work_struct *All);
+float ** mult_matrix(float **matrix_1, float **matrix_2);
+
+float **matrix_move (float *xyz);
+float **matrix_turn_x(float corner);
+float **matrix_turn_y(float corner);
+float **matrix_turn_z(float corner);
+float **matrix_scaling(float *xyz);
+float **create_matrix(int rows, int columns);
+void remove_matrix(float **A);
 
 #endif
