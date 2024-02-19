@@ -12,7 +12,7 @@ float** centralization (work_struct *All){
 
 float **mult_matrix(float **matrix_1, float **matrix_2) {
     float **res;
-    res = create_matrix(4, 4);
+    res = create_matrix_4x4();
     for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 4; j++) {
         for (int k = 0; k < 4; k++) {
@@ -24,7 +24,7 @@ float **mult_matrix(float **matrix_1, float **matrix_2) {
 }
 
 float **matrix_move (float *xyz){
-    float **res = create_matrix(4, 4);
+    float **res = create_matrix_4x4();
     res[0][0] = 1; res[0][3] = xyz[0];
     res[1][1] = 1; res[1][3] = xyz[1];
     res[2][2] = 1; res[2][3] = xyz[2];
@@ -33,7 +33,7 @@ float **matrix_move (float *xyz){
 }
 
 float **matrix_turn_x(float corner){
-    float **res = create_matrix(4, 4);
+    float **res = create_matrix_4x4();
     res[0][0] = 1;
     res[1][1] = cos(corner); res[1][2] = sin(corner);
     res[2][1]= -sin(corner); res[2][2] = cos(corner);
@@ -42,7 +42,7 @@ float **matrix_turn_x(float corner){
 }
 
 float **matrix_turn_y(float corner){
-    float **res = create_matrix(4, 4);
+    float **res = create_matrix_4x4();
     res[0][0] = cos(corner); res[0][2] = -sin(corner);
     res[1][1] = 1;
     res[2][0] = sin(corner); res[2][2] = cos(corner);
@@ -51,7 +51,7 @@ float **matrix_turn_y(float corner){
 }
 
 float **matrix_turn_z(float corner){
-    float **res = create_matrix(4, 4);
+    float **res = create_matrix_4x4();
     res[0][0] = cos(corner); res[0][1] = sin(corner);
     res[1][0] = -sin(corner); res[1][1] = cos(corner);
     res[2][2] = 1;
@@ -60,7 +60,7 @@ float **matrix_turn_z(float corner){
 }
 
 float **matrix_scaling(float *xyz){
-    float **res = create_matrix(4, 4);
+    float **res = create_matrix_4x4();
     res[0][0] = xyz[0];
     res[1][1] = xyz[1];
     res[2][2] = xyz[2];
@@ -69,21 +69,21 @@ float **matrix_scaling(float *xyz){
 }
 
 
-float **create_matrix(int rows, int columns) {
+float **create_matrix_4x4() {
     float **result;
-    result = (float **)malloc(rows * sizeof(float *));
-    for (int i = 0; i < rows; i++) {
-      result[i] = malloc(columns * sizeof(float));
+    result = (float **)malloc(4 * sizeof(float *));
+    for (int i = 0; i < 4; i++) {
+      result[i] = malloc(4 * sizeof(float));
     }
-    for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < columns; j++) {
+    for (int i = 0; i < 4; i++) {
+      for (int j = 0; j < 4; j++) {
         result[i][j] = 0;
       }
     }
     return result;
 }
 
-void remove_matrix(float **A) {
+void remove_matrix_4x4(float **A) {
   if (A != NULL) {
     for (int i = 0; i < 4; i++) {
       free(A[i]);

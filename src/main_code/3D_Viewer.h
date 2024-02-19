@@ -25,7 +25,7 @@ float **matrix_turn_x(float corner);
 float **matrix_turn_y(float corner);
 float **matrix_turn_z(float corner);
 float **matrix_scaling(float *xyz);
-float **create_matrix(int rows, int columns);
-void remove_matrix(float **A);
+float **create_matrix_4x4();
+void remove_matrix_4x4(float **A);
 
 #endif
