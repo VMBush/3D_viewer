@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+// Qstring qcolorToSlashed(QColor color) {
+//    return  QString::number(color.redF()) + "/" + QString::number(color.greenF()) + "/" + QString::number(color.blueF());
+// }
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -82,8 +86,8 @@ void MainWindow::backgroundColorChange() {
     QColor color = QColorDialog::getColor();
     glScreen->backgroundColor = color.name();
     setupConfigs();
-    glScreen->draw();
-    glScreen->setConf("Background color", color.name());
+    glScreen->setConf("Background color", glScreen->backgroundColor);
+    glScreen->update();
 
 }
 
@@ -91,16 +95,14 @@ void MainWindow::vertexColorChange() {
     QColor color = QColorDialog::getColor();
     glScreen->vertexColor = color.name();
     setupConfigs();
-    glScreen->draw();
-    glScreen->setConf("Vertex color", color.name());
+    glScreen->setConf("Vertex color", glScreen->vertexColor);
 }
 
 void MainWindow::edgeColorChange() {
     QColor color = QColorDialog::getColor();
     glScreen->edgeColor = color.name();
     setupConfigs();
-    glScreen->draw();
-    glScreen->setConf("Edge color", color.name());
+    glScreen->setConf("Edge color", glScreen->edgeColor);
 }
 
 void MainWindow::projectionTypeChange(int index) {
@@ -112,7 +114,6 @@ void MainWindow::projectionTypeChange(int index) {
         glScreen->projectionType = "perspective";
         break;
     }
-    glScreen->draw();
     glScreen->setConf("Projection type", glScreen->projectionType);
 }
 
@@ -128,7 +129,6 @@ void MainWindow::vertexTypeChange(int index) {
         glScreen->vertexType = "square";
         break;
     }
-    glScreen->draw();
     glScreen->setConf("Vertex type", glScreen->vertexType);
 
 }
@@ -148,7 +148,6 @@ void MainWindow::vertexThicknessChange(int index) {
         glScreen->vertexThickness = "4";
         break;
     }
-    glScreen->draw();
     glScreen->setConf("Vertex thickness", glScreen->vertexThickness);
 
 }
@@ -162,7 +161,6 @@ void MainWindow::edgeTypeChange(int index) {
         glScreen->edgeType = "dashed";
         break;
     }
-    glScreen->draw();
     glScreen->setConf("Edge type", glScreen->edgeType);
 
 }
@@ -182,7 +180,6 @@ void MainWindow::edgeThicknessChange(int index) {
         glScreen->edgeThickness = "4";
         break;
     }
-    glScreen->draw();
     glScreen->setConf("Edge thickness", glScreen->edgeThickness);
 
 }

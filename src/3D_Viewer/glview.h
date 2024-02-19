@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QCoreApplication>
 #include <QColorDialog>
+#include <QVector3D>
 
 
 class glView : public QOpenGLWidget
@@ -15,7 +16,6 @@ public:
     glView();
     glView(QWidget* w);
 
-    void draw();
 
     QString projectionType;
     QString backgroundColor;
@@ -30,10 +30,10 @@ public:
 
 private:
     void initGlView();
-    void initializeGL() override;
-
     QString getFromConf(QString param);
-
+protected:
+    void initializeGL();
+    void paintGL();
 };
 
 #endif // GLVIEW_H
