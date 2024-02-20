@@ -10,7 +10,7 @@ float** centralization (work_struct *All){
     return move_matrix_center;
 }
 
-float **mult_matrix(float **matrix_1, float **matrix_2) {
+float **mult_matrix_4x4(float **matrix_1, float **matrix_2) {
     float **res;
     res = create_matrix_4x4();
     for (int i = 0; i < 4; i++) {
