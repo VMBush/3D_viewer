@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/shaders">
+        <file alias="edgeFrag">shaders/edge/edge.frag</file>
+        <file alias="edgeVert">shaders/edge/edge.vert</file>
+        <file alias="edgeDashedGeo">shaders/edge/edge_dashed.geo.vert</file>
+        <file alias="verFrag">shaders/vertex/vertex.frag</file>
+        <file alias="verVert">shaders/vertex/vertex.vert</file>
+        <file alias="verRoundGeo">shaders/vertex/vertex_round.geo.frag</file>
+        <file alias="verSquareGeo">shaders/vertex/vertex_square.geo.frag</file>
+    </qresource>
+</RCC>

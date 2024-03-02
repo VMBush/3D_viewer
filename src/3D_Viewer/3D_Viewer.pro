@@ -12,11 +12,13 @@ SOURCES += \
     glview.cpp \
     main.cpp \
     mainwindow.cpp \
-    modules/sceneModelling.cpp
+    modules/sceneModelling.cpp \
+    shaderProgram.cpp
 
 HEADERS += \
     glview.h \
-    mainwindow.h
+    mainwindow.h \
+    shaderProgram.h
 
 FORMS += \
     mainwindow.ui
@@ -31,8 +33,23 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     options.conf \
     shaders/dot.frag \
+    shaders/dot.geo.frag \
     shaders/dot.vert \
-    shaders/dotgeo.frag \
+    shaders/dot/dot.frag \
+    shaders/dot/dot.vert \
+    shaders/dot/dot_round.geo.frag \
+    shaders/dot/dot_square.geo.frag \
     shaders/edge.frag \
-    shaders/edge.geo \
-    shaders/edge.vert
+    shaders/edge.geo.vert \
+    shaders/edge.vert \
+    shaders/edge/edge.frag \
+    shaders/edge/edge.vert \
+    shaders/edge/edge_dashed.geo.vert \
+    shaders/edge_dashed.geo.vert \
+    shaders/vertex/vertex.frag \
+    shaders/vertex/vertex.vert \
+    shaders/vertex/vertex_round.geo.frag \
+    shaders/vertex/vertex_square.geo.frag
+
+RESOURCES += \
+    resources.qrc

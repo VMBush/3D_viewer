@@ -1,4 +1,4 @@
-#versio3 330
+#version 330
 
 out vec4 color;
 

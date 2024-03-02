@@ -1,24 +1,25 @@
 #include "glview.h"
 
 
+
+
 glView::glView() {
-    initGlView();
+    initGLView();
 }
 
 glView::glView(QWidget* w) : QOpenGLWidget(w){
-    initGlView();
+    initGLView();
 }
 
-void glView::initGlView() {
-    projectionType = getFromConf("Projection type");
-    backgroundColor = getFromConf("Background color");
-    vertexType = getFromConf("Vertex type");
-    vertexColor = getFromConf("Vertex color");
-    vertexThickness = getFromConf("Vertex thickness");
-    edgeType = getFromConf("Edge type");
-    edgeColor = getFromConf("Edge color");
-    edgeThickness = getFromConf("Edge thickness");
-
+void glView::initGLView() {
+    params.projectionType = getFromConf("Projection type");
+    params.backgroundColor = getFromConf("Background color");
+    params.vertexType = getFromConf("Vertex type");
+    params.vertexColor = getFromConf("Vertex color");
+    params.vertexThickness = getFromConf("Vertex thickness");
+    params.edgeType = getFromConf("Edge type");
+    params.edgeColor = getFromConf("Edge color");
+    params.edgeThickness = getFromConf("Edge thickness");
 }
 
 QString glView::getFromConf(QString param) {

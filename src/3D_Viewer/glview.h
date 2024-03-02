@@ -8,15 +8,12 @@
 #include <QCoreApplication>
 #include <QColorDialog>
 #include <QVector3D>
+#include <QOpenGLShaderProgram>
+#include <QFile>
+#include <QTextStream>
 
-
-class glView : public QOpenGLWidget
+struct Params
 {
-public:
-    glView();
-    glView(QWidget* w);
-
-
     QString projectionType;
     QString backgroundColor;
     QString vertexType;
@@ -25,11 +22,26 @@ public:
     QString edgeType;
     QString edgeColor;
     QString edgeThickness;
+};
+
+class glView : public QOpenGLWidget
+{
+public:
+    glView();
+    glView(QWidget* w);
 
     void setConf(QString param, QString value);
 
+    Params params;
+    QOpenGLShaderProgram programVertex;
+    QOpenGLShaderProgram programEdge;
+
+
+
+
 private:
-    void initGlView();
+    void initShaderPrograms();
+    void initGLView();
     QString getFromConf(QString param);
 protected:
     void initializeGL();
