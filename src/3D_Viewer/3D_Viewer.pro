@@ -12,13 +12,11 @@ SOURCES += \
     glview.cpp \
     main.cpp \
     mainwindow.cpp \
-    modules/sceneModelling.cpp \
-    shaderProgram.cpp
+    modules/sceneModelling.cpp
 
 HEADERS += \
     glview.h \
-    mainwindow.h \
-    shaderProgram.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

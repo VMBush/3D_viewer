@@ -20,6 +20,7 @@ void glView::initGLView() {
     params.edgeType = getFromConf("Edge type");
     params.edgeColor = getFromConf("Edge color");
     params.edgeThickness = getFromConf("Edge thickness");
+
 }
 
 QString glView::getFromConf(QString param) {

@@ -24,6 +24,14 @@ struct Params
     QString edgeThickness;
 };
 
+struct Object {
+    float* vertices = nullptr;
+    int* indices = nullptr;
+    float centMatrix[4][4];
+    float rotationMatrix[4][4];
+    float offsetMatrix[4][4];
+};
+
 class glView : public QOpenGLWidget
 {
 public:
@@ -33,13 +41,16 @@ public:
     void setConf(QString param, QString value);
 
     Params params;
+    Object object;
+
+private:
+
     QOpenGLShaderProgram programVertex;
     QOpenGLShaderProgram programEdge;
 
+    GLfloat* vertices;
+    GLint* indices;
 
-
-
-private:
     void initShaderPrograms();
     void initGLView();
     QString getFromConf(QString param);
