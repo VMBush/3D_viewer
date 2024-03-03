@@ -25,7 +25,7 @@ void glView::initGLView() {
 
 QString glView::getFromConf(QString param) {
     QString executablePath = QCoreApplication::applicationDirPath();
-    QFile file(executablePath + "/../../3D_Viewer/options.conf");
+    QFile file(QString(SRCDIR) + "options.conf");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QString line, result = "";
 
@@ -46,9 +46,9 @@ QString glView::getFromConf(QString param) {
 
 void glView::setConf(QString param, QString value) {
     QString executablePath = QCoreApplication::applicationDirPath();
-    QFile configs(executablePath + "/../../3D_Viewer/options.conf");
+    QFile configs(QString(SRCDIR) + "options.conf");
     configs.open(QIODevice::ReadOnly | QIODevice::Text);
-    QFile outConf(executablePath + "/../../3D_Viewer/temp.txt");
+    QFile outConf(QString(SRCDIR) + "temp.conf");
     outConf.open(QIODevice::WriteOnly | QIODevice::Text);
 
     QTextStream in(&configs);
@@ -68,6 +68,6 @@ void glView::setConf(QString param, QString value) {
 
     configs.close();
     configs.remove();
-    outConf.rename(executablePath + "/../../3D_Viewer/options.conf");
+    outConf.rename(QString(SRCDIR) + "options.conf");
     outConf.close();
 }
