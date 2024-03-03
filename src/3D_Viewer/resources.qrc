@@ -8,7 +8,4 @@
         <file alias="verRoundGeo">shaders/vertex/vertex_round.geo.frag</file>
         <file alias="verSquareGeo">shaders/vertex/vertex_square.geo.frag</file>
     </qresource>
-    <qresource prefix="/files">
-        <file alias="options">options.conf</file>
-    </qresource>
 </RCC>
