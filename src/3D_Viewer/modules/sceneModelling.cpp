@@ -22,7 +22,9 @@ void glView::initializeGL() {
     glEnable(GL_DEPTH_TEST);
 
     initShaderPrograms();
-    //object =
+    create4mat(object.centMatrix);
+    create4mat(object.offsetMatrix);
+    create4mat(object.rotationMatrix);
 }
 
 void glView::initShaderPrograms() {

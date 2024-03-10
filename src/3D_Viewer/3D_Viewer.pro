@@ -17,7 +17,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     modules/sceneModelling.cpp
-    SOURCES += c_code/parsec.c
+
 
 HEADERS += \
     c_code/3D_Viewer.h \

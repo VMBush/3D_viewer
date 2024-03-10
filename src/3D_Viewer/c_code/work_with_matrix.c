@@ -1,5 +1,46 @@
 #include "3D_Viewer.h"
 
+void create4mat(float arr[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            arr[i][j] = 0;
+        }
+    }
+    for (int i = 0; i < 4; i++) {
+        arr[i][i] = 1;
+    }
+}
+
+
+void mult4matToRes(float m1[4][4], float m2[4][4], float res[4][4]) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 4; k++) {
+                res[i][j] = m1[i][k] * m2[k][j];
+            }
+        }
+    }
+}
+
+void mult4mat(float m1[4][4], float m2[4][4]) {
+    float res[4][4];
+    mult4matToRes(m1, m2, res);
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            m2[i][j] = res[i][j];
+        }
+    }
+}
+
+void offset4mat(float x, float y, float z, float mat[4][4]) {
+    float res[4][4];
+    create4mat(res);
+    res[0][3] = x;
+    res[1][3] = y;
+    res[2][3] = z;
+
+}
+
 float** centralization (work_struct *All){
     float centerX, centerY, centerZ;
     centerX = All->minMaxX[0] + (All->minMaxX[1] - All->minMaxX[0])/2;
@@ -10,18 +51,6 @@ float** centralization (work_struct *All){
     return move_matrix_center;
 }
 
-float **mult_matrix_4x4(float **matrix_1, float **matrix_2) {
-    float **res;
-    res = create_matrix_4x4();
-    for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 4; j++) {
-        for (int k = 0; k < 4; k++) {
-          res[i][j] += matrix_1[i][k] * matrix_2[k][j];
-        }
-      }
-    }
-   return res;
-}
 
 float **matrix_move (float *xyz){
     float **res = create_matrix_4x4();

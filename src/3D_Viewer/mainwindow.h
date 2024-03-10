@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include <QColorDialog>
 #include <QFileDialog>
+#include <QMessageBox>
 #include "glview.h"
-#include "parser.h"
+#include "c_code/3D_Viewer.h"
 
 
 QT_BEGIN_NAMESPACE

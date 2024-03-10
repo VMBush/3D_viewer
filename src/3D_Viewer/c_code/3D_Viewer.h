@@ -6,7 +6,9 @@
 #include <stdio.h>
 #include <string.h>
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
     int amount_coord;
@@ -18,6 +20,10 @@ typedef struct {
     float minMaxZ[2];
 } work_struct;
 
+void create4mat(float arr[4][4]);
+void mult4matToRes(float m1[4][4], float m2[4][4], float res[4][4]);
+void mult4mat(float left[4][4], float res_right[4][4]);
+void offset4mat(float x, float y, float z, float mat[4][4]);
 
 /// \brief Создает матрицу, которая централизут объект на сцене
 /// \param All Структура, в которой хранятся спарсенные ранее данные об объекте
@@ -25,12 +31,6 @@ typedef struct {
 /// \attention необходимо очистить память после использования
 float** centralization (work_struct *All);
 
-/// \brief Умножает 2 матрицы размером 4x4
-/// \param matrix_1 матрица, которую нужно умножить
-/// \param matrix_2 матрица, на которую нужно умножить
-/// \return указатель на матрицу, которая является результатом усножения 
-/// \attention необходимо очистить память после использования
-float ** mult_matrix_4x4(float **matrix_1, float **matrix_2);
 
 /// \brief Создает матрицу перемещения
 /// \param xyz Массив из 4 элементов, где хранятся данные по смещению объекта по каждой оси
@@ -91,6 +91,8 @@ int add_points(work_struct *Data, FILE *file);
 int add_coord(const char *str, work_struct *Data, int count_coord);
 int add_index(const char *str, work_struct *Data, int count_index);
 void centering(work_struct *Data);
-
+#ifdef __cplusplus
+}
+#endif
 
 #endif

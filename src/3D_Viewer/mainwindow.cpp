@@ -186,7 +186,7 @@ void MainWindow::edgeThicknessChange(int index) {
 
 void MainWindow::on_pushButton_clicked()
 {
-    QString folderPath = QString(SRCDIR) + "/obj_files";
+    QString folderPath = QString(SRCDIR) + "obj_files";
     QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл"), folderPath, tr("Files (*.*)"));
 
     if (!filePath.isEmpty()) {
@@ -210,7 +210,6 @@ void MainWindow::on_pushButton_clicked()
         } else {
 
             qDebug() << "Файл прочтен" << filePath;
-
         }
     }
 }
