@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     modules/sceneModelling.cpp
+    SOURCES += c_code/parsec.c
 
 HEADERS += \
     glview.h \

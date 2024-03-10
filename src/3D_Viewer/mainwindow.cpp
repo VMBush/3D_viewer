@@ -184,11 +184,6 @@ void MainWindow::edgeThicknessChange(int index) {
 
 }
 
-
-extern "C" {
-void parseFile(const QString& filePath);
-}
-
 void MainWindow::on_pushButton_clicked()
 {
     QString folderPath = QString(SRCDIR) + "/obj_files";
@@ -196,5 +191,18 @@ void MainWindow::on_pushButton_clicked()
 
     if (!filePath.isEmpty()) {
         selectedFilePath = filePath;
+
+        // Преобразуем QString filePath в char* file_name
+        QByteArray byteArray = filePath.toLocal8Bit();
+        char* file_name = byteArray.data();
+
+        // Создаем экземпляр work_struct
+        work_struct Data;
+
+        // Вызываем функцию fileReading из parser.c
+        int error = fileReading(&Data, file_name);
+        if (error != OK) {
+            // Обработка ошибки
+        }
     }
 }
