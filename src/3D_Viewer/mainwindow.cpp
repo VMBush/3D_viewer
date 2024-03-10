@@ -196,13 +196,22 @@ void MainWindow::on_pushButton_clicked()
         QByteArray byteArray = filePath.toLocal8Bit();
         char* file_name = byteArray.data();
 
-        // Создаем экземпляр work_struct
+
         work_struct Data;
 
-        // Вызываем функцию fileReading из parser.c
+
         int error = fileReading(&Data, file_name);
+
         if (error != OK) {
-            // Обработка ошибки
+    
+            QString errorMessage = QString("Ошибки страшнные, переделывай");
+            qDebug() << errorMessage;
+            QMessageBox::critical(this, "Ошибка", errorMessage);
+        } else {
+
+            qDebug() << "Файл прочтен" << filePath;
+
         }
     }
 }
+
