@@ -219,6 +219,13 @@ void MainWindow::on_pushButton_clicked()
             ui->label_2->setText("Количество вершин: " + QString::number(Data.amount_coord));
             ui->label_3->setText("Количество ребер: " + QString::number(Data.amount_edges));
 
+            // Извлекаем имя файла из полного пути
+            QFileInfo fileInfo(filePath);
+            QString fileName = fileInfo.fileName();
+
+            // Выводим имя файла в label
+            ui->label->setText("Имя объекта: " + fileName);
+
         }
         
     }
