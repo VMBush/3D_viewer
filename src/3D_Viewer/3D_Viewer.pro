@@ -20,7 +20,7 @@ SOURCES += \
 
 
 HEADERS += \
-    c_code/3D_Viewer.h \
+    c_code/cModules.h \
     glview.h \
     mainwindow.h
 

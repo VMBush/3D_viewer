@@ -6,7 +6,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "glview.h"
-#include "c_code/3D_Viewer.h"
 
 
 QT_BEGIN_NAMESPACE

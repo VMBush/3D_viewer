@@ -184,11 +184,6 @@ void MainWindow::edgeThicknessChange(int index) {
 
 }
 
-void MainWindow::setVertexCountLabel() {
-    ui->label_2->setText("Количество вершин: " + QString::number(Data->amount_coord));
-}
-
-
 void MainWindow::on_pushButton_clicked()
 {
     QString folderPath = QString(SRCDIR) + "obj_files";
@@ -203,10 +198,10 @@ void MainWindow::on_pushButton_clicked()
         char* file_name = byteArray.data();
 
 
-        work_struct Data;
+        work_struct data;
 
 
-        int error = fileReading(&Data, file_name);
+        int error = fileReading(&data, file_name);
 
         if (error != OK) {
     
@@ -216,8 +211,8 @@ void MainWindow::on_pushButton_clicked()
         } else {
 
             qDebug() << "Файл прочтен" << filePath;
-            ui->label_2->setText("Количество вершин: " + QString::number(Data.amount_coord));
-            ui->label_3->setText("Количество ребер: " + QString::number(Data.amount_edges));
+            ui->label_2->setText("Количество вершин: " + QString::number(data.amount_coord));
+            ui->label_3->setText("Количество ребер: " + QString::number(data.amount_edges));
 
             // Извлекаем имя файла из полного пути
             QFileInfo fileInfo(filePath);

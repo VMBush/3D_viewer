@@ -11,7 +11,7 @@
 #include <QOpenGLShaderProgram>
 #include <QFile>
 #include <QTextStream>
-#include "c_code/3D_Viewer.h"
+#include "c_code/cModules.h"
 
 struct Params
 {
