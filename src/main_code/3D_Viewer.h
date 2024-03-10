@@ -3,6 +3,9 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
+
 
 
 typedef struct {
@@ -69,5 +72,25 @@ float **create_matrix_4x4();
 /// \brief Очищает память для матрицы размером 4x4
 /// \param A указатель на матрицу, которую необходимо удалить
 void remove_matrix_4x4(float **A);
+
+
+#define OK 0
+#define ERROR_FILE_OPEN -1
+#define ERROR_MEMORY -2
+#define ERROR_FILE_STRUCT -3
+#define buff_size 256 // поменять размер
+
+
+int fileReading(work_struct *Data, char *file_name);
+void init_data(work_struct *Data);
+void delete_data(work_struct *Data);
+int count_VF(work_struct *Data, FILE *file);
+int check_symb(char *str, char c);
+int check_digit(const char *str);
+int add_points(work_struct *Data, FILE *file);
+int add_coord(const char *str, work_struct *Data, int count_coord);
+int add_index(const char *str, work_struct *Data, int count_index);
+void centering(work_struct *Data);
+
 
 #endif
