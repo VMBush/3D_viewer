@@ -4,19 +4,22 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 
 
-typedef struct {
+struct work_struct {
     int amount_coord;
     int amount_index;
+    int amount_edges; 
     float *coord;
     int *index;
     float minMaxX[2];
     float minMaxY[2];
     float minMaxZ[2];
-} work_struct;
+};
 
 
 /// \brief Создает матрицу, которая централизут объект на сцене
