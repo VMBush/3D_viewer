@@ -5,6 +5,8 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include "glview.h"
+#include "parser.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

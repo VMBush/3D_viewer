@@ -2,10 +2,8 @@
 
 
 int fileReading(work_struct *Data, char *file_name) {
-    printf("Ебучий случай, процесс пошел: %s\n", file_name);
     FILE *file = fopen(file_name, "r");
     if (file == NULL) {
-        printf("Что то пошло по пизде.\n");
         return ERROR_FILE_OPEN;
     }
 
@@ -49,7 +47,6 @@ int count_VF(work_struct *Data, FILE *file) {
 
     while (fgets(str_file, sizeof(str_file), file)) {
         if (str_file[0] != '#') {
-            printf("Читаем строчку: %s", str_file);
             if (check_symb(str_file, 'v')) {
                 Data->amount_coord++;
             } else if (check_symb(str_file, 'f')) {
@@ -59,10 +56,6 @@ int count_VF(work_struct *Data, FILE *file) {
     }
     error = (Data->amount_coord > 0 && Data->amount_index > 0) ? OK : ERROR_FILE_STRUCT;
     rewind(file);
-
-    printf("Хуяк по координатам: %d\n", Data->amount_coord);
-    printf("Херак по граням: %d\n", Data->amount_index);
-
     return error;
 }
 

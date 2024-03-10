@@ -184,6 +184,11 @@ void MainWindow::edgeThicknessChange(int index) {
 
 }
 
+
+extern "C" {
+void parseFile(const QString& filePath);
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     QString folderPath = QString(SRCDIR) + "/obj_files";
