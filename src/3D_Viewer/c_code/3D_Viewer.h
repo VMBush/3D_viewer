@@ -4,21 +4,24 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct {
+struct work_struct {
     int amount_coord;
     int amount_index;
+    int amount_edges; 
     float *coord;
     int *index;
     float minMaxX[2];
     float minMaxY[2];
     float minMaxZ[2];
-} work_struct;
+};
 
 void create4mat(float arr[4][4]);
 void mult4matToRes(float m1[4][4], float m2[4][4], float res[4][4]);

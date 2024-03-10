@@ -184,10 +184,16 @@ void MainWindow::edgeThicknessChange(int index) {
 
 }
 
+void MainWindow::setVertexCountLabel() {
+    ui->label_2->setText("Количество вершин: " + QString::number(Data->amount_coord));
+}
+
+
 void MainWindow::on_pushButton_clicked()
 {
     QString folderPath = QString(SRCDIR) + "obj_files";
     QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл"), folderPath, tr("Files (*.*)"));
+    
 
     if (!filePath.isEmpty()) {
         selectedFilePath = filePath;
@@ -210,7 +216,11 @@ void MainWindow::on_pushButton_clicked()
         } else {
 
             qDebug() << "Файл прочтен" << filePath;
+            ui->label_2->setText("Количество вершин: " + QString::number(Data.amount_coord));
+            ui->label_3->setText("Количество ребер: " + QString::number(Data.amount_edges));
+
         }
+        
     }
 }
 
