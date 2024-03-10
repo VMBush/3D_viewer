@@ -22,6 +22,7 @@ void glView::initializeGL() {
     glEnable(GL_DEPTH_TEST);
 
     initShaderPrograms();
+    //object =
 }
 
 void glView::initShaderPrograms() {

@@ -11,12 +11,15 @@ CONFIG += c++17
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 SOURCES += \
+    c_code/parser.c \
+    c_code/work_with_matrix.c \
     glview.cpp \
     main.cpp \
     mainwindow.cpp \
     modules/sceneModelling.cpp
 
 HEADERS += \
+    c_code/3D_Viewer.h \
     glview.h \
     mainwindow.h
 
