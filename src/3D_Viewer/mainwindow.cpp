@@ -184,3 +184,12 @@ void MainWindow::edgeThicknessChange(int index) {
 
 }
 
+void MainWindow::on_pushButton_clicked()
+{
+    QString folderPath = QApplication::applicationDirPath() + "/obj_files";
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл"), folderPath, tr("Files (*.*)"));
+
+    if (!filePath.isEmpty()) {
+        selectedFilePath = filePath;
+    }
+}
