@@ -216,7 +216,8 @@ void MainWindow::on_pushButton_clicked()
         } else {
 
             qDebug() << "Файл прочтен" << filePath;
-            setVertexCountLabel();
+            ui->label_2->setText("Количество вершин: " + QString::number(Data.amount_coord));
+            ui->label_3->setText("Количество ребер: " + QString::number(Data.amount_edges));
 
         }
         
