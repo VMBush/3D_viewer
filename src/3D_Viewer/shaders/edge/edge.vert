@@ -1,9 +1,10 @@
 #version 330
-layout (location = 0) in vec4 position;
+layout (location = 0) in vec3 position;
 
 uniform mat4 MVPMatrix;
 
 void main(void)
 {
-    gl_Position = MVPMatrix * position;
+    vec4 pos = vec4(position, 1.0f);
+    gl_Position = MVPMatrix * pos;
 }

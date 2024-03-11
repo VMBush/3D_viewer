@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     glScreen = new glView(screen);
     glScreen->setGeometry(3, 3, screen->width() - 6, screen->height() - 6);
 
+
     setupConfigs();
 
     connect(ui->backgroundColor, &QPushButton::clicked, this, &MainWindow::backgroundColorChange);
@@ -24,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->vertexThickness, &QComboBox::currentIndexChanged, this, &MainWindow::vertexThicknessChange);
     connect(ui->edgeType, &QComboBox::currentIndexChanged, this, &MainWindow::edgeTypeChange);
     connect(ui->edgeThickness, &QComboBox::currentIndexChanged, this, &MainWindow::edgeThicknessChange);
+
+
 }
 
 MainWindow::~MainWindow()

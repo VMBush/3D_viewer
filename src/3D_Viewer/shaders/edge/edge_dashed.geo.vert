@@ -1,13 +1,13 @@
 #version 330
 
 layout (lines) in;
-layout (line_strip, max_vertices=31) out;
+layout (line_strip, max_vertices=61) out;
 
 
 void main(void)
 {
     float linelen = length(vec3(gl_in[1].gl_Position - gl_in[0].gl_Position));
-    int dashcount = int(min(linelen / 2, 30));
+    int dashcount = int(max(linelen / 0.05, 5));
     if (dashcount % 2 == 0) {
         dashcount += 1;
     }
