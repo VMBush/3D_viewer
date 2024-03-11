@@ -12,6 +12,7 @@ DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 SOURCES += \
     c_code/parser.c \
+    c_code/vectors.cpp \
     c_code/work_with_matrix.c \
     glview.cpp \
     main.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     c_code/cModules.h \
+    c_code/vectors.h \
     glview.h \
     mainwindow.h
 
