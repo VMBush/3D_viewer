@@ -12,6 +12,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
+#include <QMouseEvent>
 #include <QFile>
 #include <QTextStream>
 #include "c_code/cModules.h"
@@ -32,12 +33,21 @@ struct Params
 struct Object {
     vecVert vertices;
     vecInd indices;
-    // float* vertices = nullptr;
-    // int* indices = nullptr;
-    float centMatrix[4][4];
-    float rotationMatrix[4][4];
-    float offsetMatrix[4][4];
 };
+
+struct Matrices {
+    // При создании объекта оцентровывает его и укладывает в масштаб от -0.7 до 0.7 по всем осям
+    // При повороте мышью поворачивает (rebuildObject, mouseMoveEvent)
+    float centMatrix[4][4];
+    // Смещает объект при взаимодействии с мышью (rebuildObject, mouseMoveEvent)
+    float offsetMatrix[4][4];
+    // Отображает объект в перспективе (initializeGL,
+    float perspectiveMatrix[4][4];
+    // Масштабирует объект под экран (initializeGL)
+    float screenMatrix[4][4];
+};
+
+
 
 class glView : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -46,6 +56,9 @@ public:
     glView(QWidget* w);
 
     void setConf(QString param, QString value);
+    void initShaderPrograms();
+    void rebuildPerspectiveMatrix();
+    void rescale(float newScale);
 
     Params params;
     Object object;
@@ -56,10 +69,15 @@ private:
     QOpenGLShaderProgram programEdge;
     QOpenGLVertexArrayObject vao;
 
-    void initShaderPrograms();
+    Matrices matrices;
+    int mousePos[2];
+    float scaleVal;
+
     void initGLView();
     void rebuildObject();
     QString getFromConf(QString param);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 protected:
     void initializeGL();
     void paintGL();

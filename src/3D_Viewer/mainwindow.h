@@ -38,5 +38,6 @@ private slots:
     void edgeColorChange();
     void edgeThicknessChange(int index);
     void on_pushButton_clicked(); // Обработчик нажатия на кнопку
+    void on_dial_sliderMoved(int position);
 };
 #endif // MAINWINDOW_H

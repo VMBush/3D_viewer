@@ -1,25 +1,30 @@
 #version 330
 
 layout (points) in;
-layout (triangle_strip, max_vertices=365) out;
+layout (triangle_strip, max_vertices=5) out;
 
 uniform float radius;
+uniform mat4 MMatrix;
+uniform mat4 VPMatrix;
+
 
 void main(void)
 {
-    // проверить размерность
-    vec3 center = gl_in[0].gl_Position;
-    vec3 vertices[4];
-    vertices[0] = vec3(center.x + radius, center.y + radius, center.z);
-    vertices[1] = vec3(center.x - radius, center.y + radius, center.z);
-    vertices[2] = vec3(center.x - radius, center.y - radius, center.z);
-    vertices[3] = vec3(center.x + radius, center.y - radius, center.z);
+
+    vec4 center = MMatrix * gl_in[0].gl_Position;
+    vec4 vertices[4];
+    vertices[0] = VPMatrix * vec4(center.x + radius, center.y + radius, center.z, center.w);
+    vertices[1] = VPMatrix * vec4(center.x - radius, center.y + radius, center.z, center.w);
+    vertices[2] = VPMatrix * vec4(center.x - radius, center.y - radius, center.z, center.w);
+    vertices[3] = VPMatrix * vec4(center.x + radius, center.y - radius, center.z, center.w);
 
     for (int i = 0; i < 4; i++) {
         gl_Position = vertices[i];
         EmitVertex();
-
     }
+    gl_Position = vertices[0];
+    EmitVertex();
+
     EndPrimitive();
 
 }

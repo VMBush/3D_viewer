@@ -1,9 +1,15 @@
 #version 330
-layout (location = 0) in vec4 position;
+layout (location = 0) in vec3 position;
 
-uniform mat4 MVPMatrix;
+uniform mat4 MMatrix;
+uniform mat4 VPMatrix;
+uniform bool geo;
 
 void main(void)
 {
-    gl_Position = MVPMatrix * position;
+    vec4 pos = vec4(position, 1.0f);
+    if (!geo) {
+        pos = VPMatrix * MMatrix * pos;
+    }
+    gl_Position = pos;
 }

@@ -118,6 +118,7 @@ void MainWindow::projectionTypeChange(int index) {
         break;
     }
     glScreen->setConf("Projection type", glScreen->params.projectionType);
+    glScreen->rebuildPerspectiveMatrix();
 }
 
 void MainWindow::vertexTypeChange(int index) {
@@ -165,7 +166,6 @@ void MainWindow::edgeTypeChange(int index) {
         break;
     }
     glScreen->setConf("Edge type", glScreen->params.edgeType);
-
 }
 
 void MainWindow::edgeThicknessChange(int index) {
@@ -227,5 +227,10 @@ void MainWindow::on_pushButton_clicked()
         }
         
     }
+}
+
+void MainWindow::on_dial_sliderMoved(int position)
+{
+    glScreen->rescale(position);
 }
 
