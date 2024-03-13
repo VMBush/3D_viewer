@@ -1,0 +1,17 @@
+#include "tests.h"
+#define CK_FORK no
+
+START_TEST(test_1) {
+
+}
+END_TEST
+
+Suite* make_???_suite(void) {
+  Suite* s = suite_create("???");
+  TCase* tc = tcase_create("case");
+
+  tcase_add_test(tc, test_1);
+
+  suite_add_tcase(s, tc);
+  return s;
+}
