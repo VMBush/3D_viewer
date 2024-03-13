@@ -18,6 +18,7 @@
 #include "c_code/cModules.h"
 #include "c_code/vectors.h"
 
+
 struct Params
 {
     QString projectionType;

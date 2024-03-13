@@ -187,7 +187,7 @@ color: #ffffff;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="saveImg">
     <property name="geometry">
      <rect>
       <x>900</x>
@@ -770,7 +770,7 @@ QComboBox::down-arrow {
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="saveGif">
     <property name="geometry">
      <rect>
       <x>900</x>
@@ -930,6 +930,25 @@ QComboBox::down-arrow {
 	border-radius: 0px;
 	padding: 13px;
 }</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="recordInd">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>500</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+    border-radius: 10px;
+	background: #ff0000;
+</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

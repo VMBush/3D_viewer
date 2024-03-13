@@ -234,3 +234,90 @@ void MainWindow::on_dial_sliderMoved(int position)
     glScreen->rescale(position);
 }
 
+
+
+
+void MainWindow::on_saveImg_clicked()
+{
+    QString initialPath = QString(SRCDIR) + "generated_media";
+    QString selectedFilter;
+    QString filePath = QFileDialog::getSaveFileName(nullptr, "Сохранить изображение", initialPath, "Images (*.bmp *.jpg)", &selectedFilter);
+    qDebug() << selectedFilter << filePath;
+    if (!filePath.isEmpty()) {
+        QImage image = glScreen->grabFramebuffer();
+        image.save(filePath);
+    }
+}
+
+
+
+void MainWindow::on_saveGif_clicked() {
+    ui->saveGif->setEnabled(false);
+    ui->recordInd->setStyleSheet(ui->recordInd->styleSheet() + "\n	background: #00ff00;");
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
+    timer->start(100);
+    gifElCount = 0;
+    QDir().mkdir(QString(SRCDIR) + "generated_media/tmp");
+}
+
+void MainWindow::oneGif() {
+    glScreen->grab().scaled(640, 480, Qt::IgnoreAspectRatio).save(QString(SRCDIR) + "generated_media/tmp/" + QString::number(gifElCount) + ".bmp");
+    gifElCount++;
+
+    if (gifElCount == 50) {
+        timer->stop();
+        createGif();
+        gifElCount = 0;
+        QDir dir(QString(SRCDIR) + "generated_media/tmp");
+        dir.removeRecursively();
+    }
+
+}
+
+void MainWindow::createGif() {
+    QString selectedFilter;
+    QString gif_name = QFileDialog::getSaveFileName(nullptr, "Сохранить gif", QString(SRCDIR) + "generated_media", "GIF (*.gif)", &selectedFilter);
+    QByteArray ga = gif_name.toLocal8Bit();
+    GifWriter writer = {};
+    int err = 0;
+    if (GifBegin(&writer, ga.data(), 640, 480, 10, 8, false)) {
+        for (int i = 0; i < 50; i++) {
+            if (err == 1) {
+                break;
+            }
+            QImage img(QString(SRCDIR) + "generated_media/tmp/" + QString::number(i) + ".bmp");
+            if (!img.isNull()) {
+                if (GifWriteFrame(&writer,
+                                  img.convertToFormat(QImage::Format_Indexed8)
+                                      .convertToFormat(QImage::Format_RGBA8888)
+                                      .constBits(),
+                                  640, 480, 10, 8, false)) {
+                } else {
+                    QMessageBox::critical(0, "Error", "Gif file can not be created! 1");
+                    err = 1;
+                }
+            } else {
+                QMessageBox::critical(0, "Error", "Gif file can not be created! 2");
+                err = 1;
+            }
+        }
+        if (err == 0) {
+            GifEnd(&writer);
+        }
+    } else {
+        err = 1;
+        QMessageBox::critical(0, "Error", "Gif file can not be created! 3");
+    }
+
+    if (err == 1) {
+        if (QFile::exists(gif_name)) {
+            QFile::remove(gif_name);
+        }
+    }
+
+    ui->saveGif->setEnabled(true);
+    ui->recordInd->setStyleSheet(ui->recordInd->styleSheet() + "\n	background: #ff0000;");
+
+}
+

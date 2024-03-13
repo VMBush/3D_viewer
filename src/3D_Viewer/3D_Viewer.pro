@@ -11,6 +11,7 @@ CONFIG += c++17
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 SOURCES += \
+    3rdparty/gif.cpp \
     c_code/parser.c \
     c_code/vectors.cpp \
     c_code/work_with_matrix.c \
@@ -21,6 +22,7 @@ SOURCES += \
 
 
 HEADERS += \
+    3rdparty/gif.h \
     c_code/cModules.h \
     c_code/vectors.h \
     glview.h \

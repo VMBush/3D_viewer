@@ -5,7 +5,9 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTimer>
 #include "glview.h"
+#include "3rdparty/gif.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +29,8 @@ private:
     Ui::MainWindow *ui;
     glView* glScreen;
     QString selectedFilePath; // Путь к выбранному файлу
+    QTimer* timer;
+    int gifElCount;
 
 private slots:
     void backgroundColorChange();
@@ -39,5 +43,13 @@ private slots:
     void edgeThicknessChange(int index);
     void on_pushButton_clicked(); // Обработчик нажатия на кнопку
     void on_dial_sliderMoved(int position);
+    void on_saveImg_clicked();
+    void on_saveGif_clicked();
+
+    void oneGif();
+    void createGif();
+
+
+
 };
 #endif // MAINWINDOW_H
