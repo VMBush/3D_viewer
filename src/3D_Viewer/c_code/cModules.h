@@ -32,13 +32,6 @@ void scale4mat(float scale, float mat[4][4]);
 void rotate4mat(float xyz[4], float mat[4][4]);
 void quanterionFromDmouse(float dpos[2], float quanterion[4]);
 
-// / \brief Создает матрицу, которая централизут объект на сцене
-// / \param All Структура, в которой хранятся спарсенные ранее данные об объекте
-// / \return указатель на матрицу
-// / \attention необходимо очистить память после использования
-// float** centralization (work_struct *All);
-
-
 #define OK 0
 #define ERROR_FILE_OPEN -1
 #define ERROR_MEMORY -2

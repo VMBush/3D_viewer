@@ -203,7 +203,6 @@ void MainWindow::on_pushButton_clicked()
 
         work_struct data;
 
-
         int error = fileReading(&data, file_name);
 
         if (error != OK) {

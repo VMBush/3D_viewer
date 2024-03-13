@@ -2,7 +2,6 @@
 #include <QOpenGLFunctions>
 
 
-
 QVector3D colorToVec(QString color) {
     color.remove(0, 1);
     return QVector3D((color.mid(0, 2).toInt(nullptr, 16) / 255.0f), (color.mid(2, 2).toInt(nullptr, 16) / 255.0f), (color.mid(4, 2).toInt(nullptr, 16) / 255.0f));
@@ -13,40 +12,40 @@ void glView::initializeGL() {
     initializeOpenGLFunctions();
     glEnable(GL_DEPTH_TEST);
 
-    createVecInd(object.indices);
-    createVecVert(object.vertices);
+    createVecInd(&object.indices);
+    createVecVert(&object.vertices);
 
     scaleVal = 0;
 
     //start temp
-    clearVecInd(object.indices);
-    clearVecVert(object.vertices);
-    float v[3] = {0.5f, 0.5f, -0.0f};
-    addToVecVert(object.vertices, v);
-    v[0] = 0.5f;
-    v[1] = -0.5f;
-    addToVecVert(object.vertices, v);
-    v[0] = -0.5f;
-    v[1] = -0.5f;
-    addToVecVert(object.vertices, v);
-    v[0] = -0.5f;
-    v[1] = 0.5f;
-    addToVecVert(object.vertices, v);
+    clearVecInd(&object.indices);
+    clearVecVert(&object.vertices);
+    float v[3] = {0.8f, 0.8f, -0.0f};
+    addToVecVert(&object.vertices, v);
+    v[0] = 0.8f;
+    v[1] = -0.2f;
+    addToVecVert(&object.vertices, v);
+    v[0] = -0.2f;
+    v[1] = -0.2f;
+    addToVecVert(&object.vertices, v);
+    v[0] = -0.2f;
+    v[1] = 0.8f;
+    addToVecVert(&object.vertices, v);
 
     int iv[2] = {0, 1};
-    addToVecInd(object.indices, iv);
+    addToVecInd(&object.indices, iv);
     iv[0] = 1;
     iv[1] = 3;
-    addToVecInd(object.indices, iv);
+    addToVecInd(&object.indices, iv);
     iv[0] = 0;
     iv[1] = 3;
-    addToVecInd(object.indices, iv);
+    addToVecInd(&object.indices, iv);
     iv[0] = 2;
     iv[1] = 1;
-    addToVecInd(object.indices, iv);
+    addToVecInd(&object.indices, iv);
     iv[0] = 2;
     iv[1] = 3;
-    addToVecInd(object.indices, iv);
+    addToVecInd(&object.indices, iv);
     //end temp
 
     initShaderPrograms();

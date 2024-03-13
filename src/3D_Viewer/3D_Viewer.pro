@@ -13,7 +13,7 @@ DEFINES += SRCDIR=\\\"$$PWD/\\\"
 SOURCES += \
     3rdparty/gif.cpp \
     c_code/parser.c \
-    c_code/vectors.cpp \
+    c_code/vectors.c \
     c_code/work_with_matrix.c \
     glview.cpp \
     main.cpp \
