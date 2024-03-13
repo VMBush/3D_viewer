@@ -111,9 +111,9 @@ void glView::rebuildObject() {
             }
 
         }
-        offset[0] = (minmaxxyz[0][1] + minmaxxyz[0][0]) / 2;
-        offset[1] = (minmaxxyz[1][1] + minmaxxyz[1][0]) / 2;
-        offset[2] = (minmaxxyz[2][1] + minmaxxyz[2][0]) / 2;
+        offset[0] = -(minmaxxyz[0][1] + minmaxxyz[0][0]) / 2;
+        offset[1] = -(minmaxxyz[1][1] + minmaxxyz[1][0]) / 2;
+        offset[2] = -(minmaxxyz[2][1] + minmaxxyz[2][0]) / 2;
         offset4mat(offset, matrices.centMatrix);
         float scales[3];
         for (int i = 0; i < 3; i++) {
