@@ -189,9 +189,10 @@ void MainWindow::edgeThicknessChange(int index) {
 
 void MainWindow::on_pushButton_clicked()
 {
+    clearVecInd(&object.indices);
+    clearVecVert(&object.vertices);
     QString folderPath = QString(SRCDIR) + "obj_files";
     QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл"), folderPath, tr("Files (*.*)"));
-    
 
     if (!filePath.isEmpty()) {
         selectedFilePath = filePath;
@@ -200,21 +201,17 @@ void MainWindow::on_pushButton_clicked()
         QByteArray byteArray = filePath.toLocal8Bit();
         char* file_name = byteArray.data();
 
-
-        work_struct data;
-
-        int error = fileReading(&data, file_name);
+        // Вызываем наш парсер для чтения файла
+        int error = loadObj(file_name, &object);
 
         if (error != OK) {
-    
             QString errorMessage = QString("Ошибки страшнные, переделывай");
             qDebug() << errorMessage;
             QMessageBox::critical(this, "Ошибка", errorMessage);
         } else {
-
             qDebug() << "Файл прочтен" << filePath;
-            ui->label_2->setText("Количество вершин: " + QString::number(data.amount_coord));
-            ui->label_3->setText("Количество ребер: " + QString::number(data.amount_edges));
+            ui->label_2->setText("Количество вершин: " + QString::number(object.vertices.size));
+            ui->label_3->setText("Количество граней: " + QString::number(object.indices.size / 3));
 
             // Извлекаем имя файла из полного пути
             QFileInfo fileInfo(filePath);
@@ -222,11 +219,10 @@ void MainWindow::on_pushButton_clicked()
 
             // Выводим имя файла в label
             ui->label->setText("Имя объекта: " + fileName);
-
         }
-        
     }
 }
+
 
 void MainWindow::on_dial_sliderMoved(int position)
 {
