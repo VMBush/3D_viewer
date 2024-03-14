@@ -1,5 +1,7 @@
 #include "glview.h"
 #include <QOpenGLFunctions>
+#include <QOpenGLExtraFunctions>
+#include <GL/gl.h>
 
 
 QVector3D colorToVec(QString color) {
@@ -10,6 +12,7 @@ QVector3D colorToVec(QString color) {
 void glView::initializeGL() {
 
     initializeOpenGLFunctions();
+
     glEnable(GL_DEPTH_TEST);
 
     createVecInd(&object.indices);
@@ -46,15 +49,22 @@ void glView::initializeGL() {
     iv[0] = 2;
     iv[1] = 3;
     addToVecInd(&object.indices, iv);
-    //end temp
-
+    // //end temp
+    loadObj(fname.toUtf8().data(), &object);
     initShaderPrograms();
     create4mat(matrices.perspectiveMatrix);
     create4mat(matrices.screenMatrix);
     matrices.screenMatrix[0][0] = 415.0f / 815.0f;
     rebuildPerspectiveMatrix();
 
-    vao.create();
+    vao = new QOpenGLVertexArrayObject;
+    vao->create();
+    vbo = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+    vbo->create();
+    ebo = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+    ebo->create();
+
+
     rebuildObject();
 }
 
@@ -74,24 +84,22 @@ void glView::rebuildPerspectiveMatrix() {
 }
 
 void glView::rebuildObject() {
-    GLuint VBO, IBO;
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &IBO);
+    vao->bind();
+    vbo->release();
+    ebo->release();
+    vbo->bind();
+    vbo->allocate(object.vertices.data, sizeof(float) * object.vertices.size * 3);
 
-    vao.bind();
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * object.vertices.size * 3, object.vertices.data, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * object.indices.size * 2, object.indices.data, GL_STATIC_DRAW);
+    ebo->bind();
+    ebo->allocate(object.indices.data, sizeof(int) * object.indices.size * 2);
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
+    vao->release();
 
-    vao.release();
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+
 
 
     create4mat(matrices.centMatrix);
@@ -159,28 +167,17 @@ void glView::initShaderPrograms() {
 
 }
 
-void glView::paintGL() {    
+void glView::paintGL() {
     int attribLocation;
     QVector3D color;
 
     initShaderPrograms();
 
 
+
     QVector3D colorVec = colorToVec(this->params.backgroundColor);
     glClearColor(colorVec.x(), colorVec.y(), colorVec.z(), 1);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    float mvpMatrix[4][4];
-    mult4matToRes(matrices.offsetMatrix, matrices.centMatrix, mvpMatrix);
-    mult4mat(matrices.perspectiveMatrix, mvpMatrix);
-    mult4mat(matrices.screenMatrix, mvpMatrix);
-    GLfloat mvpMatGLfloat[16];
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            //transposing!!!!!!
-            mvpMatGLfloat[4*j + i] = mvpMatrix[i][j];
-        }
-    }
 
     float mMatrix[4][4];
     float vpMatrix[4][4];
@@ -201,7 +198,13 @@ void glView::paintGL() {
         }
     }
 
-    vao.bind();
+    vao->bind();
+
+    GLint bufferSize;
+    glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &bufferSize);
+
+
+
 
     programVertex.bind();
     attribLocation = programVertex.uniformLocation("MMatrix");
@@ -220,13 +223,13 @@ void glView::paintGL() {
     if (attribLocation > 0) {
         float radius = 0;
         if (params.vertexThickness == '1') {
-            radius = 0.03f;
+            radius = 0.002f;
         } else if (params.vertexThickness == '2') {
-            radius = 0.06f;
+            radius = 0.03f;
         } else if (params.vertexThickness == '3') {
-            radius = 0.15f;
+            radius = 0.06f;
         } else {
-            radius = 0.3f;
+            radius = 0.18f;
         }
         glUniform1f(attribLocation, radius);
     }
@@ -249,36 +252,36 @@ void glView::paintGL() {
     programVertex.release();
 
 
-    programEdge.bind();
-    // attribLocation = programEdge.uniformLocation("MVPMatrix");
-    // glUniformMatrix4fv(attribLocation, 1, GL_FALSE, mvpMatGLfloat);
-    attribLocation = programVertex.uniformLocation("MMatrix");
-    glUniformMatrix4fv(attribLocation, 1, GL_FALSE, mMatGLfloat);
-    attribLocation = programVertex.uniformLocation("VPMatrix");
-    glUniformMatrix4fv(attribLocation, 1, GL_FALSE, vpMatGLfloat);
+    if (params.edgeType != "no") {
+        programEdge.bind();
+        attribLocation = programVertex.uniformLocation("MMatrix");
+        glUniformMatrix4fv(attribLocation, 1, GL_FALSE, mMatGLfloat);
+        attribLocation = programVertex.uniformLocation("VPMatrix");
+        glUniformMatrix4fv(attribLocation, 1, GL_FALSE, vpMatGLfloat);
 
-    attribLocation = programVertex.uniformLocation("geo");
-    glUniform1i(attribLocation, params.edgeType != "solid");
+        attribLocation = programVertex.uniformLocation("geo");
+        glUniform1i(attribLocation, params.edgeType != "solid");
 
 
-    color = colorToVec(params.edgeColor);
-    attribLocation = programEdge.uniformLocation("edgecolor");
-    glUniform4f(attribLocation, (GLfloat)color.x(), (GLfloat)color.y(), (GLfloat)color.z(), 1.0f);
+        color = colorToVec(params.edgeColor);
+        attribLocation = programEdge.uniformLocation("edgecolor");
+        glUniform4f(attribLocation, (GLfloat)color.x(), (GLfloat)color.y(), (GLfloat)color.z(), 1.0f);
 
-    if (params.edgeThickness == '1') {
-        glLineWidth(1.0f);
-    } else if (params.edgeThickness == '2') {
-        glLineWidth(5.0f);
-    } else if (params.edgeThickness == '3') {
-        glLineWidth(20.0f);
-    } else {
-        glLineWidth(70.0f);
+        if (params.edgeThickness == '1') {
+            glLineWidth(1.0f);
+        } else if (params.edgeThickness == '2') {
+            glLineWidth(5.0f);
+        } else if (params.edgeThickness == '3') {
+            glLineWidth(20.0f);
+        } else {
+            glLineWidth(70.0f);
+        }
+
+        glDrawElements(GL_LINES, object.indices.size * 2, GL_UNSIGNED_INT, 0);
+        programEdge.release();
     }
 
-    glDrawElements(GL_LINES, object.indices.size * 2, GL_UNSIGNED_INT, 0);
-    programEdge.release();
-
-    vao.release();
+    vao->release();
     update();
 }
 
@@ -296,7 +299,6 @@ void glView::mouseMoveEvent(QMouseEvent *event) {
         float dPos[2];
         dPos[0] = newPos[0] - mousePos[0];
         dPos[1] = mousePos[1] - newPos[1];
-        //qDebug() << dPos[0] << "  " << dPos[1];
 
         mousePos[0] = newPos[0];
         mousePos[1] = newPos[1];

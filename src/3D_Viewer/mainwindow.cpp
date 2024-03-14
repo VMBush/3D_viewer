@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QOpenGLFunctions>
 
-// Qstring qcolorToSlashed(QColor color) {
-//    return  QString::number(color.redF()) + "/" + QString::number(color.greenF()) + "/" + QString::number(color.blueF());
-// }
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -66,8 +64,10 @@ void MainWindow::setupConfigs() {
 
     if (glScreen->params.edgeType == "solid") {
         ui->edgeType->setCurrentIndex(0);
-    } else {
+    } else if (glScreen->params.edgeType == "dashed") {
         ui->edgeType->setCurrentIndex(1);
+    } else {
+        ui->edgeType->setCurrentIndex(2);
     }
 
     newColorS = QString("\nbackground-color: %1;").arg(glScreen->params.edgeColor);
@@ -164,7 +164,11 @@ void MainWindow::edgeTypeChange(int index) {
     case 1:
         glScreen->params.edgeType = "dashed";
         break;
+    case 2:
+        glScreen->params.edgeType = "no";
+        break;
     }
+
     glScreen->setConf("Edge type", glScreen->params.edgeType);
 }
 
@@ -189,37 +193,29 @@ void MainWindow::edgeThicknessChange(int index) {
 
 void MainWindow::on_pushButton_clicked()
 {
-    clearVecInd(&object.indices);
-    clearVecVert(&object.vertices);
+    clearVecInd(&(glScreen->object.indices));
+    clearVecVert(&(glScreen->object.vertices));
     QString folderPath = QString(SRCDIR) + "obj_files";
-    QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл"), folderPath, tr("Files (*.*)"));
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл"), folderPath, tr("Files (*.obj)"));
 
     if (!filePath.isEmpty()) {
-        selectedFilePath = filePath;
-
         // Преобразуем QString filePath в char* file_name
         QByteArray byteArray = filePath.toLocal8Bit();
         char* file_name = byteArray.data();
 
         // Вызываем наш парсер для чтения файла
-        int error = loadObj(file_name, &object);
+        loadObj(file_name, &(glScreen->object));
 
-        if (error != OK) {
-            QString errorMessage = QString("Ошибки страшнные, переделывай");
-            qDebug() << errorMessage;
-            QMessageBox::critical(this, "Ошибка", errorMessage);
-        } else {
-            qDebug() << "Файл прочтен" << filePath;
-            ui->label_2->setText("Количество вершин: " + QString::number(object.vertices.size));
-            ui->label_3->setText("Количество граней: " + QString::number(object.indices.size / 3));
+        ui->label_2->setText("Количество вершин: " + QString::number(glScreen->object.vertices.size));
+        ui->label_3->setText("Количество ребер: " + QString::number(glScreen->object.indices.size));
 
-            // Извлекаем имя файла из полного пути
-            QFileInfo fileInfo(filePath);
-            QString fileName = fileInfo.fileName();
+        // Извлекаем имя файла из полного пути
+        QFileInfo fileInfo(filePath);
+        QString fileName = fileInfo.fileName();
 
-            // Выводим имя файла в label
-            ui->label->setText("Имя объекта: " + fileName);
-        }
+        // Выводим имя файла в label
+        ui->label->setText("Имя объекта: " + fileName);
+        glScreen->rebuildObject();
     }
 }
 
@@ -237,7 +233,6 @@ void MainWindow::on_saveImg_clicked()
     QString initialPath = QString(SRCDIR) + "generated_media";
     QString selectedFilter;
     QString filePath = QFileDialog::getSaveFileName(nullptr, "Сохранить изображение", initialPath, "Images (*.bmp *.jpg)", &selectedFilter);
-    qDebug() << selectedFilter << filePath;
     if (!filePath.isEmpty()) {
         QImage image = glScreen->grabFramebuffer();
         image.save(filePath);
@@ -259,6 +254,7 @@ void MainWindow::on_saveGif_clicked() {
 void MainWindow::oneGif() {
     glScreen->grab().scaled(640, 480, Qt::IgnoreAspectRatio).save(QString(SRCDIR) + "generated_media/tmp/" + QString::number(gifElCount) + ".bmp");
     gifElCount++;
+
 
     if (gifElCount == 50) {
         timer->stop();

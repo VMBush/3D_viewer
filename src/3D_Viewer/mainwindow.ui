@@ -647,6 +647,11 @@ QComboBox::down-arrow {
        <string>Пунктирные</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Нет</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_15">
      <property name="geometry">

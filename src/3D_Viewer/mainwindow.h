@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include "glview.h"
+//#include "c_code/vectors.h"
 #include "3rdparty/gif.h"
 
 
@@ -28,7 +29,6 @@ private:
     void setupConfigs();
     Ui::MainWindow *ui;
     glView* glScreen;
-    QString selectedFilePath; // Путь к выбранному файлу
     QTimer* timer;
     int gifElCount;
 

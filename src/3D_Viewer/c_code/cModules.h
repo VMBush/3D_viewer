@@ -7,22 +7,18 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include "vectors.h"
+
+struct Object {
+    vecVert vertices;
+    vecInd indices;
+};
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-typedef struct {
-    int amount_coord;
-    int amount_index;
-    int amount_edges;
-    float *coord;
-    int *index;
-    float minMaxX[2];
-    float minMaxY[2];
-    float minMaxZ[2];
-} work_struct;
 
 void create4mat(float arr[4][4]);
 void mult4matToRes(float m1[4][4], float m2[4][4], float res[4][4]);
@@ -32,23 +28,13 @@ void scale4mat(float scale, float mat[4][4]);
 void rotate4mat(float xyz[4], float mat[4][4]);
 void quanterionFromDmouse(float dpos[2], float quanterion[4]);
 
-#define OK 0
-#define ERROR_FILE_OPEN -1
-#define ERROR_MEMORY -2
-#define ERROR_FILE_STRUCT -3
-#define buff_size 256 // поменять размер
 
+// Определение структуры для хранения вектора в трехмерном пространстве
+struct vec3 {
+    float x, y, z;
+};
 
-int fileReading(work_struct *data, char *file_name);
-void init_data(work_struct *data);
-void delete_data(work_struct *data);
-int count_VF(work_struct *data, FILE *file);
-int check_symb(char *str, char c);
-int check_digit(const char *str);
-int add_points(work_struct *data, FILE *file);
-int add_coord(const char *str, work_struct *data, int count_coord);
-int add_index(const char *str, work_struct *data, int count_index);
-void centering(work_struct *data);
+int loadObj(const char* filename, struct Object* object);
 
 
 #ifdef __cplusplus

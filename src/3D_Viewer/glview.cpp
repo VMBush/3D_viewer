@@ -9,6 +9,7 @@ glView::glView() {
 
 glView::glView(QWidget* w) : QOpenGLWidget(w){
     initGLView();
+    this->fname = fname;
 }
 
 void glView::initGLView() {

@@ -31,10 +31,7 @@ struct Params
     QString edgeThickness;
 };
 
-struct Object {
-    vecVert vertices;
-    vecInd indices;
-};
+
 
 struct Matrices {
     // При создании объекта оцентровывает его и укладывает в масштаб от -0.7 до 0.7 по всем осям
@@ -55,11 +52,15 @@ class glView : public QOpenGLWidget, protected QOpenGLFunctions
 public:
     glView();
     glView(QWidget* w);
+    QString fname;
 
     void setConf(QString param, QString value);
     void initShaderPrograms();
     void rebuildPerspectiveMatrix();
+    void rebuildObject();
     void rescale(float newScale);
+    void initializeGL();
+
 
     Params params;
     Object object;
@@ -68,19 +69,20 @@ private:
 
     QOpenGLShaderProgram programVertex;
     QOpenGLShaderProgram programEdge;
-    QOpenGLVertexArrayObject vao;
+    QOpenGLVertexArrayObject* vao;
+    QOpenGLBuffer* vbo;
+    QOpenGLBuffer* ebo;
+    int freezing = 0;
 
     Matrices matrices;
     int mousePos[2];
     float scaleVal;
 
     void initGLView();
-    void rebuildObject();
     QString getFromConf(QString param);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
 protected:
-    void initializeGL();
     void paintGL();
 };
 
