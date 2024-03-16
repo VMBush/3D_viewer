@@ -7,5 +7,6 @@
 
 Suite* make_matrix_suite(void);
 Suite *make_vector_suite(void);
+Suite *make_obj_loader_suite(void);
 
 #endif

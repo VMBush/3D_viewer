@@ -9,17 +9,20 @@
 int loadObj(const char* filename, struct Object* object) {
     FILE* file = fopen(filename, "r"); 
     if (!file) { 
+        printf("ошибка чтения файла!");
         return 0; 
     }
 
-    int numVertices = 0;
-    int numIndices = 0;
+    //int numVertices = 0;
+    //int numIndices = 0;
 
     char line[100];
+    memset(object->vertices.data, 0, sizeof(float) * 3 * object->vertices.capacity);
+
     while (fgets(line, sizeof(line), file)) {
         // Обрабатываем вершины
         if (line[0] == 'v' && line[1] == ' ') {
-            struct vec3 vertex; // Создаем структуру для хранения вершины
+            //struct vec3 vertex; // Создаем структуру для хранения вершины
             char* num;
             float input[3] = {0,0,0};
             num = strtok(line, " ");
