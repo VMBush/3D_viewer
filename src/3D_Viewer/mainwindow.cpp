@@ -208,6 +208,9 @@ void MainWindow::on_pushButton_clicked()
 
         ui->label_2->setText("Количество вершин: " + QString::number(glScreen->object.vertices.size));
         ui->label_3->setText("Количество ребер: " + QString::number(glScreen->object.indices.size));
+        for (int i = 0; i < glScreen->object.indices.size; i++) {
+            qDebug() << "\n" << i << ": " << glScreen->object.indices.data[2*i] <<  glScreen->object.indices.data[2*i + 1];
+        }
 
         // Извлекаем имя файла из полного пути
         QFileInfo fileInfo(filePath);
